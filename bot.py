@@ -146,5 +146,5 @@ def on_click(message):
 #запуск бота   
 if __name__ == "__main__":
     bot.remove_webhook()  # Удаляем возможные остатки вебхука
-    time.sleep(1)         # Пауза для гарантии
+    time.sleep(1)         
     bot.polling(none_stop=True)
