@@ -14,7 +14,7 @@ bot = telebot.TeleBot(os.getenv("TOKEN"))
 isNeuro = False
 is_processing = False
 
-API_KEY = "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"
+API_KEY = os.getenv("API_DEEPSEEK")
 MODEL = "deepseek/deepseek-r1:free"
 
 def process_content(content):
