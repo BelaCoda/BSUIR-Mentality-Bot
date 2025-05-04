@@ -5,8 +5,14 @@ import requests
 import json
 import time
 from dotenv import load_dotenv
+from flask import Flask
 
 load_dotenv()
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running!"
 
 bot = telebot.TeleBot(os.getenv("TOKEN"))
 
@@ -145,6 +151,9 @@ def on_click(message):
 
 #запуск бота   
 if __name__ == "__main__":
-    bot.remove_webhook()  # Удаляем возможные остатки вебхука
-    time.sleep(1)         
-    bot.polling(none_stop=True)
+    # Запускаем бота в отдельном потоке
+    from threading import Thread
+    Thread(target=bot.polling, kwargs={"none_stop": True}).start()
+    
+    # Запускаем Flask на порту 10000
+    app.run(host='0.0.0.0', port=10000)
