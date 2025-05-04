@@ -151,6 +151,8 @@ def on_click(message):
 
 #запуск бота   
 if __name__ == "__main__":
+    bot.remove_webhook()  # Удаляем старые вебхуки
+    time.sleep(2)         # Пауза для завершения операций
     # Запускаем бота в отдельном потоке
     from threading import Thread
     Thread(target=bot.polling, kwargs={"none_stop": True}).start()
